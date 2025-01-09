@@ -1,7 +1,7 @@
 import type { Element } from "types";
 
 export default function Header({ Menu }: { Menu: Element }) {
-    return (
+    return (<>
         <header class="xl:px-72 lg:px-32 md:px-32 px-2 py-2 flex justify-between items-center z-10">
             {/* TODO: make header responsive; https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_responsive_navbar_dropdown */}
             <div class="md:w-1/3 w-1/4">
@@ -15,5 +15,8 @@ export default function Header({ Menu }: { Menu: Element }) {
                 </nav>
             </div>
         </header>
-    );
+        <div class="md:hidden h-0 opacity-0 overflow-hidden duration-500 flex justify-evenly *:font-semibold" id="mobile-menu">
+            <Menu />
+        </div>
+    </>);
 };
