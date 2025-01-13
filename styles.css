@@ -17,12 +17,11 @@
     h4 { @apply md:text-5xl text-3xl };
     h5 { @apply md:text-4xl text-2xl };
     p { @apply text-lg };
-    ul { @apply list-disc ml-12 };
-    ol { @apply list-decimal ml-12 };
-    li { @apply text-lg mb-2 };
+    ul { list-style-type: "✔ " };
+    li { @apply md:text-2xl text-xl mb-2 };
     a { @apply cursor-pointer text-primary hover:text-primary-dark duration-300 };
     
-    input, textarea { @apply w-full p-4 mb-2 rounded-lg };
+    input, textarea { @apply w-full p-4 mb-2 rounded-2xl };
     img { @apply shadow-2xl };
 };
 

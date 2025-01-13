@@ -3,3 +3,5 @@ bun.lock
 
 public/compressed
 public/styles.css
+
+.env

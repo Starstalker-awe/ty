@@ -21,7 +21,8 @@ export default {
             textShadow: {
                 small: "#666 3px 3px 3px",
                 minor: "#666 2px 2px 2px",
-                tiny: "#666 1px 1px 1px"
+                tiny: "#666 1px 1px 1px",
+                none: "none"
             },
             borderWidth: { 1: "1px" },
 
@@ -32,6 +33,7 @@ export default {
         },
     },
     plugins: [
+        require("tailwind-children"),
         plugin(({ matchUtilities, theme }) => {
             matchUtilities({
                 'text-shadow': v => ({ textShadow: v })

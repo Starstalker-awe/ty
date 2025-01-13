@@ -1,6 +1,7 @@
-import type { Element } from "types";
+import type { ElementF } from "types";
+//import { Html } from "@elysiajs/html";
 
-export default function Header({ Menu }: { Menu: Element }) {
+export default function Header({ Menu }: { Menu: ElementF }) {
     return (<>
         <header class="xl:px-72 lg:px-32 md:px-32 px-2 py-2 flex justify-between items-center z-10">
             {/* TODO: make header responsive; https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_responsive_navbar_dropdown */}
