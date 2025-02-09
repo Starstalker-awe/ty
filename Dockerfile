@@ -1,4 +1,4 @@
-FROM oven/bun:alpine AS base
+FROM starstalkerawe/bun:latest AS base
 WORKDIR /home/bun/site
 
 FROM base AS install

@@ -39,7 +39,7 @@ export default function Home() {
         }}
         head={<script src="/static/js/home" type="module" />}
     >
-        <div class="md:flex pb-16 bg-primaries-light md:*:w-1/2">
+        <div class="flex md:flex-row flex-col items-start pb-16 bg-primaries-light md:*:w-1/2">
             <div class="py-8 md:p-8 p-4 my-auto">
                 <h1 class="md:text-9xl text-6xl md:text-left">Trevor Yates</h1>
                 <h3 class="md:text-left normal-case">Programmer, website builder & world traveler</h3>
@@ -69,7 +69,7 @@ export default function Home() {
 
         <div class="bg-gradient-to-b from-primaries-light to-secondary/95 md:p-16 p-8" id="examples">
             <h2 class="md:mb-8 mb-4">samples of my work</h2>
-            <div class="*:fade-image flex md:flex-row flex-col *:overflow-hidden *:rounded-t-2xl md:*:w-1/3 md:*:max-h-192 *:max-h-96">
+            <div class="*:fade-image flex md:flex-row flex-col *:overflow-hidden *:rounded-t-2xl md:*:w-1/3 lg:*:max-h-192 *:max-h-96">
                 <div><img src="/static/wsc" /></div>
                 <div><img src="/static/tky" /></div>
                 <div><img src="/static/imd" /></div>
@@ -121,17 +121,20 @@ export default function Home() {
         <div class="md:p-16 py-8 px-2" id="contact">
             <h2>Get in touch</h2>
             <div class="flex md:flex-row flex-col justify-center md:items-start md:gap-12 gap-4 md:px-16 px-3">
-                <form class="grid grid-cols-2 gap-2 md:w-5/12 *:shadow-lg *:border-1 *:border-primaries-dark/25">
-                    <input class="col-span-1" type="text" name="fname" placeholder="Your name..." required />
-                    <input class="hidden" type="text" name="lname" />
-                    <input class="col-span-1" type="tel" name="phone" placeholder="Phone number... (optional)" />
-                    <input class="col-span-2" type="email" name="email" placeholder="Email..." required />
-                    <textarea class="col-span-2" rows="3" name="message" placeholder="And message..." required />
-                    <button class="main-button col-span-2">Send Me A Message</button>
-                </form>
+                <div>
+                    <form class="grid grid-cols-2 gap-2 *:shadow-lg *:border-1 *:border-primaries-dark/25">
+                        <input class="col-span-1" type="text" name="fname" placeholder="Your name..." required />
+                        <input class="hidden" type="text" name="lname" />
+                        <input class="col-span-1" type="tel" name="phone" placeholder="Phone number... (optional)" />
+                        <input class="col-span-2" type="email" name="email" placeholder="Email..." required />
+                        <textarea class="col-span-2" rows="3" name="message" placeholder="And message..." required />
+                        <button class="main-button col-span-2" type="submit">Send Me A Message</button>
+                    </form>
+                    <div class="msg opacity-0 text-red-600 text-emerald-600 shadow-none border-none p-8 text-center"></div>
+                </div>
                 <div class="shadow-2xl p-8 rounded-lg overflow-hidden *:p-1 *:flex *:items-center">
                     <a href="mailto:trevoryatesawesome@gmail.com"><Icon src={letter} width={30} />trevoryatesawesome@gmail.com</a>
-                    <a href="tel:+1-725-252-6491"><Icon src={phone} width={30} />(725)-252-6491</a>
+                    <a href="tel:+1-725-252-6491"><Icon src={phone} width={30} />(725) 252-6491</a>
                     <a href="https://wa.me/50237983898" target="_blank"><Icon src={whatsapp} width={30} />Whatsapp</a>
                 </div>
             </div>

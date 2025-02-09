@@ -6,7 +6,7 @@ const { default: secrets } = await import(`${Bun.env.DATA_DIR}/secrets.json`);
 import * as middleware from "middleware";
 import { MailtrapTransport } from "mailtrap";
 import { html } from "@elysiajs/html";
-import nodemailer from "nodemailer";
+import Nodemailer from "nodemailer";
 import Elysia, { t } from "elysia";
 import log from "logging";
 
@@ -14,13 +14,16 @@ import log from "logging";
 import Home from "./templates/home";
 import Login from "./templates/login";
 
-const file = Bun.file(`${Bun.env.DATA_DIR}/password.txt`);
+const files = {
+    password: Bun.file(`${Bun.env.DATA_DIR}/password.txt`),
+    submissions: Bun.file(`${Bun.env.DATA_DIR}/entries.txt`)
+};
 
 const sstart = performance.now();
 const server = new Elysia()
 .use(middleware.rateLimiter)
 .use(middleware.staticFiles)
-.decorate("email", nodemailer.createTransport(MailtrapTransport({ token: secrets.mailtrap_token })))
+.decorate("email", Nodemailer.createTransport(MailtrapTransport({ token: secrets.mailtrap_token })))
 .use(html())
 
 .onError(({ code, redirect }) => { if (code === "NOT_FOUND") return redirect("/")})
@@ -31,20 +34,24 @@ const server = new Elysia()
 
     .get("/view", ({ redirect }) => redirect("/admin"))
     .post("/view", async ({ body }) => {
-        if (!await file.text()) { await Bun.write(file, await Bun.password.hash(body.password, { algorithm: "argon2id", timeCost: 31 }))};
+        try {
+            await files.password.text();
+            if (!await Bun.password.verify(body.password, await files.password.text())) { return <Login error={true} />};
+        } catch(e) { await Bun.write(files.password, await Bun.password.hash(body.password, { algorithm: "argon2id", timeCost: 31 }))};
 
-        if (await Bun.password.verify(body.password, await file.text())) {
-            return "page"
-        } else { return <Login error={true} />};
+        return "page"
     }, { body: t.Object({ password: t.String()})})
 )
 
 .group("/api", app => app
-    .post("/contact", ({ body, email }) => {
+    .post("/contact", async ({ body, email }) => {
+        console.log(body)
+        await files.submissions.write(`${Object.values(body).join("\u200b")}\n${await files.submissions.text()}`);
+
         email.sendMail({
             text: "",
             from: {
-                address: "",
+                address: secrets.from_email,
                 name: "Trevor Yates"
             },
             to: {

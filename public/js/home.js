@@ -1,3 +1,5 @@
+import handleSubmit from "./helpers/submit";
+
 document.querySelector("#menu-toggle").addEventListener("click", e => {
     const menu = document.querySelector("#mobile-menu");
     menu.classList.toggle("h-0");
@@ -6,12 +8,7 @@ document.querySelector("#menu-toggle").addEventListener("click", e => {
 });
 
 
-[...document.querySelectorAll("a[data-link]")].forEach(link => link.addEventListener("click", e => {
-    document.querySelector(`#${e.target.dataset.link}`).scrollIntoView({ behavior: "smooth" });
-}));
+[...document.querySelectorAll("a[data-link]")].forEach(link => link.addEventListener("click", e => document.querySelector(`#${e.target.dataset.link}`).scrollIntoView({ behavior: "smooth" })));
 
 
-document.querySelector("form button").addEventListener("click", e => {
-    const form = e.target.parentElement;
-    
-});
+document.querySelector("form").addEventListener("submit", e => handleSubmit(e, "/api/contact", "✅ Success!", "lname"));
