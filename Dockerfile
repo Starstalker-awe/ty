@@ -10,8 +10,7 @@ FROM base
 COPY --from=install /temp/prod/node_modules node_modules
 COPY . .
 
-RUN chown -R 1001:1001 /home/bun/site/public
+RUN chown -R 1000:1000 /home/bun/site/public
 
-USER bun
 EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "run", "main.tsx" ]
