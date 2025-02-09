@@ -28,12 +28,12 @@ export default function Home() {
         title="Home"
         Menu={Menu}
         meta={{
-            description: "Potato",
+            description: "Trevor Yates; Programmer, website builder, and world traveler!",
             keywords: [],
             og: {
-                title: "",
-                description: "",
-                image: "",
+                title: "The Trevor Yates",
+                description: "Trevor Yates; Programmer, website builder, and world traveler!",
+                image: "goodme",
                 url: ""
             }
         }}
