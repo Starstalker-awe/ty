@@ -10,7 +10,7 @@ FROM base
 COPY --from=install /temp/prod/node_modules node_modules
 COPY . .
 
-RUN chown -R bun:bun /home/bun/site/public
+RUN chown -R 1001:1001 /home/bun/site/public
 
 USER bun
 EXPOSE 3000/tcp
