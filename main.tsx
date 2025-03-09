@@ -13,7 +13,6 @@ import log from "logging";
 // Import page templates here
 import Home from "./templates/home";
 import Login from "./templates/login";
-import Base from "./templates/base";
 
 const files = {
 	password: Bun.file(`${Bun.env.DATA_DIR}/password.txt`),
@@ -35,18 +34,6 @@ const server = new Elysia()
 	})
 	// Add routes here
 	.get("/", () => <Home />)
-	.get("/verification", () => (
-		<Base
-			title=""
-			head={
-				<meta
-					name="impact-site-verification"
-					content="e9b19ea6-43c8-410e-8a6a-e9fce752bbb9"
-				/>
-			}
-			indexable={false}
-		/>
-	))
 	.group("/admin", (app) =>
 		app
 			.get("/", () => <Login error={false} />)
