@@ -3,7 +3,6 @@ node_modules/
 public/compressed
 public/styles.css
 
-.env
 secrets.json
 password.txt
 entries.txt
